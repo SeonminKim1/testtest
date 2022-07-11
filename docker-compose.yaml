@@ -1,0 +1,18 @@
+version: "3.9" # 버전 지정
+
+services: # 컨테이너 설정
+  flask:
+    build: # 실행할때마다 이미지 사용하지 않고 빌드 하여 사용.
+      context: .
+    volumes: # bind mount
+      - ./templates:/templates
+    ports:
+      - "5000:5000"
+  mongo: # db mongo
+    image: mongo # mongo
+    volumes: # named volume
+      - mongo:/data/db/
+    ports:
+      - 24017:27017
+volumes: # named volume
+  mongo:
